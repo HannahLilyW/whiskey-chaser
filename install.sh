@@ -43,7 +43,7 @@ server {
     server_name $hostName www.$hostName;
 
     location /whiskey_api/ {
-        proxy_pass https://127.0.0.1:8443/;
+        proxy_pass https://127.0.0.1:8444/;
     }
 
     location / {
@@ -60,7 +60,55 @@ python3.9 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 
+# generate a secret key for the django server
+djangoSecretKey=$(python -c 'import string; import secrets; alphabet = string.ascii_letters + string.digits; print("".join(secrets.choice(alphabet) for i in range(64)))')
 
+certbot --nginx -d $hostName
 
+useradd daphne
+usermod --shell /sbin/nologin daphne
 
+mkdir /usr/lib/whiskey/whiskey/certs
+cp /etc/letsencrypt/live/$hostName/privkey.pem /usr/lib/whiskey/whiskey/certs/privkey.pem
+cp /etc/letsencrypt/live/$hostName/cert.pem /usr/lib/whiskey/whiskey/certs/cert.pem
+chown daphne /usr/lib/whiskey/whiskey/certs/privkey.pem
+chown daphne /usr/lib/whiskey/whiskey/certs/cert.pem
 
+echo "Writing to /usr/lib/whiskey/whiskey/config.ini..."
+cat > /usr/lib/whiskey/whiskey/config.ini << EOF
+[django]
+secret_key = $djangoSecretKey
+is_development = false
+hostname = $hostName
+EOF
+
+echo "Writing to /etc/systemd/system/daphne-whiskey.service..."
+cat > /etc/systemd/system/daphne-whiskey.service << EOF
+[Unit]
+Description=Daphne service for whiskey chaser
+
+[Service]
+User=daphne
+WorkingDirectory=/usr/lib/whiskey
+ExecStart=/bin/bash -c 'cd /usr/lib/whiskey && source env/bin/activate && cd whiskey && daphne -e ssl:8444:privateKey=/usr/lib/whiskey/whiskey/certs/privkey.pem:certKey=/usr/lib/whiskey/whiskey/certs/cert.pem whiskey.asgi:application'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+echo "Running migrations..."
+cd whiskey
+python manage.py migrate
+
+# change the database and config file owner to daphne
+chmod 600 /usr/lib/whiskey/whiskey/db.sqlite3
+chown daphne:daphne /usr/lib/whiskey/whiskey/db.sqlite3
+chown daphne:daphne /usr/lib/whiskey/whiskey
+chmod 600 /usr/lib/whiskey/whiskey/config.ini
+chown daphne:daphne /usr/lib/whiskey/whiskey/config.ini
+
+systemctl daemon-reload
+systemctl enable daphne-whiskey
+systemctl restart daphne-whiskey
+systemctl enable nginx
+systemctl restart nginx

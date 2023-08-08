@@ -16,7 +16,7 @@ cd whiskey-chaser
 Run the following as root:
 
 ```
-cd /root/texas-showdown/
+cd /root/whiskey-chaser/
 git pull
 ./update.sh
 ```
