@@ -16,16 +16,18 @@ function updatePosition() {
     }
 }
 
+updatePosition()
+
 </script>
 
 <template>
     <div v-if="currentPosition">
-        Current Position: Lat {{ currentPosition.coords.latitude }} Lon {{ currentPosition.coords.longitude }}
+        Current Location: Lat {{ currentPosition.coords.latitude }} Lon {{ currentPosition.coords.longitude }}
     </div>
     <div v-else>
         Location unknown.
-        <button @click="updatePosition()">Retry getting precise location</button>
     </div>
+    <button @click="updatePosition()">↻ Refresh location</button>
 </template>
 
 <style scoped>
