@@ -1,0 +1,18 @@
+:root {
+    --color-background: #d6d6d4;
+    --color-text: #000000;
+
+    --color-button: #84694D;
+    --color-button-shadow: #51361A;
+    --color-button-pressed: #654321;
+    --color-button-hover: #9D8771;
+    --color-button-disabled: #888888;
+    --color-button-disabled-shadow: #666666;
+
+    --color-input-background: #9D8771;
+    --color-input-text: #342211;
+}
+
+* {
+    font-family: Arial, sans-serif;
+}
