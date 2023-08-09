@@ -1,17 +1,31 @@
 <script setup lang="ts">
-function showPosition(position) {
-    console.log(`Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}`)
+import { ref } from 'vue';
+import type { Ref } from 'vue';
+
+let currentPosition: Ref<GeolocationPosition|null> = ref(null);
+
+function getPosition(position: GeolocationPosition) {
+    currentPosition.value = position;
 }
 
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-} else {
-    console.log('Geolocation not supported');
+function updatePosition() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getPosition);
+    } else {
+        currentPosition.value = null;
+    }
 }
+
 </script>
 
 <template>
-    <div>Landing Page</div>
+    <div v-if="currentPosition">
+        Current Position: Lat {{ currentPosition.coords.latitude }} Lon {{ currentPosition.coords.longitude }}
+    </div>
+    <div v-else>
+        Location unknown.
+        <button @click="updatePosition()">Retry getting precise location</button>
+    </div>
 </template>
 
 <style scoped>
