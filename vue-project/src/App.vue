@@ -10,7 +10,9 @@ import { RouterView } from 'vue-router';
         </div>
     </div>
     <RouterView />
-    <a href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
+    <div class="attrib">
+        <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
+    </div>
 </template>
 
 <style scoped>
@@ -21,6 +23,11 @@ import { RouterView } from 'vue-router';
 .title {
     font-size: 32px;
     color: var(--color-text);
+}
+
+.attrib {
+    position: absolute;
+    bottom: 0;
 }
 
 </style>
