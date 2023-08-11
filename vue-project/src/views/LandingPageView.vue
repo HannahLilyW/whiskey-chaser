@@ -22,7 +22,7 @@ function updatePosition() {
 let allStores: Ref<Store[]> = ref([]);
 
 get('/stores.json').then(response => {
-    allStores.value = response;
+    allStores.value = response['data'];
 })
 
 updatePosition();
