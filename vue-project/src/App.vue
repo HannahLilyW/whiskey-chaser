@@ -23,6 +23,7 @@ import { RouterView } from 'vue-router';
 .title {
     font-size: 32px;
     color: var(--color-text);
+    font-family: cherryswash;
 }
 
 .attrib {

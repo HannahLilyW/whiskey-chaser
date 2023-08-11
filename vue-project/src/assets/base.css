@@ -13,6 +13,11 @@
     --color-input-text: #342211;
 }
 
+@font-face {
+    font-family: 'cherryswash';
+    src: url('@/assets/fonts/CherrySwash-Regular.ttf') format('truetype');
+}
+
 * {
     font-family: Arial, sans-serif;
 }
