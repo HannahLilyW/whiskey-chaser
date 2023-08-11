@@ -9,7 +9,9 @@ import { RouterView } from 'vue-router';
             Whiskey Chaser
         </div>
     </div>
-    <RouterView />
+    <div class="main-container">
+        <RouterView />
+    </div>
     <div class="attrib">
         <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
     </div>
@@ -27,6 +29,10 @@ import { RouterView } from 'vue-router';
     font-size: 32px;
     color: var(--color-text);
     font-family: cherryswash;
+}
+
+.main-container {
+    padding: 8px;
 }
 
 .attrib {
