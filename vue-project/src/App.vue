@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router';
 
 <template>
     <div class="title-flexbox">
-        <img src="./assets/whiskey.png" width="32" height="32">
+        <img src="./assets/whiskey.png" width="40" height="40">
         <div class="title">
             Whiskey Chaser
         </div>
@@ -18,6 +18,8 @@ import { RouterView } from 'vue-router';
 <style scoped>
 .title-flexbox {
     display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
 }
 
 .title {
