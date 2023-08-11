@@ -19,7 +19,8 @@ import { RouterView } from 'vue-router';
 .title-flexbox {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid grey;
+    box-shadow: 0 4px 8px -4px gray;
+    padding: 8px;
 }
 
 .title {

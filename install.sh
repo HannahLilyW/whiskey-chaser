@@ -30,6 +30,7 @@ npm install
 npm run build
 mkdir -p /usr/share/nginx/$hostName/html
 cp -r dist/* /usr/share/nginx/$hostName/html/
+cp -r /root/whiskey-chaser/stores.json /usr/share/nginx/$hostName/html/
 chown -R nginx:nginx /usr/share/nginx/$hostName/html
 
 echo "Writing to /etc/nginx/conf.d/$hostName.conf..."
