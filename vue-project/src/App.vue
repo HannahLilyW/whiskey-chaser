@@ -35,9 +35,4 @@ import { RouterView } from 'vue-router';
     padding: 8px;
 }
 
-.attrib {
-    position: absolute;
-    bottom: 0;
-}
-
 </style>
