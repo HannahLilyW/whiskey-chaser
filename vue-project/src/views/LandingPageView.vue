@@ -71,7 +71,7 @@ updatePosition();
 </script>
 
 <template>
-    <div class="unknown-location"v-if="!currentPosition">
+    <div class="unknown-location" v-if="!currentPosition">
         <div>
             Location unknown. Are location permissions allowed?
         </div>
