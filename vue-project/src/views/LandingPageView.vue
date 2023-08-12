@@ -39,9 +39,11 @@ let allStoresWithDistance = computed(() => {
             'store_id': store['store_id'],
             'address': store['address'],
             'lat': store['lat'],
-            'lon': store['lon'],
-            'distance': getDistance(currentPosition.coords.latitude, currentPosition.coords.longitude, store['lat'], store['lon'])
+            'lon': store['lon']
         })
+        if (currentPosition) {
+            stores[stores.length - 1]['distance'] = getDistance(currentPosition.coords.latitude, currentPosition.coords.longitude, store['lat'], store['lon'])
+        }
     }
     return stores;
 })
