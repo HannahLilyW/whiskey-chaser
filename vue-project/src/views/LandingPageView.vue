@@ -41,7 +41,7 @@ let allStoresWithDistance = computed(() => {
             'lat': store['lat'],
             'lon': store['lon']
         })
-        if (currentPosition) {
+        if (currentPosition && currentPosition.coords && currentPosition.coords.latitude && currentPosition.coords.longitude) {
             stores[stores.length - 1]['distance'] = getDistance(currentPosition.coords.latitude, currentPosition.coords.longitude, store['lat'], store['lon'])
         }
     }
