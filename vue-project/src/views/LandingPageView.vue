@@ -33,6 +33,7 @@ function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
 }
 
 let allStores: Ref<Store[]> = ref([]);
+let dropDate: Ref<string> = ref('Loading...')
 let allStoresWithDistance = computed(() => {
     let stores: Store[] = []
     for (let store of allStores.value) {
@@ -62,6 +63,7 @@ let allStoresWithDistance = computed(() => {
 
 get('/stores.json').then(response => {
     allStores.value = response['data'];
+    dropDate.value = response['dropDate'];
 })
 
 updatePosition();
@@ -69,21 +71,20 @@ updatePosition();
 </script>
 
 <template>
-    <div class="current-location">
-        <div v-if="currentPosition">
-            Current Location: {{ currentPosition.coords.latitude }}, {{ currentPosition.coords.longitude }}
+    <div class="unknown-location"v-if="!currentPosition">
+        <div>
+            Location unknown. Are location permissions allowed?
         </div>
-        <div v-else>
-            <div>
-                Location unknown. Are location permissions allowed?
-            </div>
-            <button @click="updatePosition()">↻ Retry location</button>
-        </div>
+        <button @click="updatePosition()">↻ Retry location</button>
     </div>
+    <div class="drop-date">Drop date: {{ dropDate }}</div>
     <div v-for="store in allStoresWithDistance">
         Store {{ store.store_id }}: {{ store.address }} <template v-if="store.distance">({{ store.distance }} mi)</template>
     </div>
 </template>
 
 <style scoped>
+.unknown-location {
+    display: flex;
+}
 </style>
