@@ -41,8 +41,8 @@ let allStoresWithDistance = computed(() => {
             'lat': store['lat'],
             'lon': store['lon']
         })
-        if (currentPosition && currentPosition.coords && currentPosition.coords.latitude && currentPosition.coords.longitude) {
-            stores[stores.length - 1]['distance'] = getDistance(currentPosition.coords.latitude, currentPosition.coords.longitude, store['lat'], store['lon'])
+        if (currentPosition.value && currentPosition.value.coords && currentPosition.value.coords.latitude && currentPosition.value.coords.longitude) {
+            stores[stores.length - 1]['distance'] = getDistance(currentPosition.value.coords.latitude, currentPosition.value.coords.longitude, store['lat'], store['lon'])
         }
     }
     return stores;
@@ -69,7 +69,7 @@ updatePosition();
         </div>
     </div>
     <div v-for="store in allStoresWithDistance">
-        Store {{ store.store_id }}: {{ store.address }} ({{ store.distance }} mi)
+        Store {{ store.store_id }}: {{ store.address }} <template v-if="store.distance">({{ store.distance }} mi)</template>
     </div>
 </template>
 
