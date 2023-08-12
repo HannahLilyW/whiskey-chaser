@@ -3,5 +3,5 @@ export type Store = {
     address: string,
     lat: number,
     lon: number,
-    distance?: number
+    distance?: string // ex: '10.0'
 }

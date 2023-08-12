@@ -21,14 +21,15 @@ function updatePosition() {
 
 function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
     /**
-     * Gets distance between 2 lat/lon coordinates in miles.
+     * Gets distance between 2 lat/lon coordinates in miles,
+     * rounded to the nearest tenth of a mile.
      */
     const r: number = 6371 * 0.6213; // radius of earth in miles
     const p: number = Math.PI / 180;
     const a = 0.5 - Math.cos((lat2 - lat1) * p) / 2
         + Math.cos(lat1 * p) * Math.cos(lat2 * p) *
         (1 - Math.cos((lon2 - lon1) * p)) / 2;
-    return 2 * r * Math.asin(Math.sqrt(a));
+    return (2 * r * Math.asin(Math.sqrt(a))).toFixed(1);
 }
 
 let allStores: Ref<Store[]> = ref([]);
@@ -46,10 +47,15 @@ let allStoresWithDistance = computed(() => {
         }
     }
     stores.sort((a, b) => {
-        if (!a.distance && !b.distance) {
+        if (a.distance && b.distance) {
+            return Number(a.distance) - Number(b.distance);
+        } else if (a.distance && !b.distance) {
+            return -1;
+        } else if (!a.distance && b.distance) {
+            return 1;
+        } else {
             return 0;
         }
-        return a.distance - b.distance;
     })
     return stores;
 })
