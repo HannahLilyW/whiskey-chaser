@@ -88,5 +88,9 @@ updatePosition();
     display: flex;
     align-items: center;
     gap: 4px;
+    padding: 4px 0px;
+}
+.drop-date {
+    padding: 4px 0px;
 }
 </style>

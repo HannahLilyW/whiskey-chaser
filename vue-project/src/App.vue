@@ -32,7 +32,13 @@ import { RouterView } from 'vue-router';
 }
 
 .main-container {
-    padding: 8px 48px;
+    padding: 8px;
+}
+
+@media (min-width: 480px) {
+    .main-container {
+        padding: 8px 48px;
+    }
 }
 
 </style>
