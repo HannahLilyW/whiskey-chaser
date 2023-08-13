@@ -73,7 +73,7 @@ updatePosition();
 <template>
     <div class="unknown-location" v-if="!currentPosition">
         <div>
-            Location unknown. Are location permissions allowed?
+            Location unknown. Please allow this site to access your location, to see the closest ABC stores to you that have been authorized to sell limited availability products.
         </div>
         <button @click="updatePosition()">↻ Retry location</button>
     </div>
@@ -86,5 +86,7 @@ updatePosition();
 <style scoped>
 .unknown-location {
     display: flex;
+    align-items: center;
+    gap: 4px;
 }
 </style>
