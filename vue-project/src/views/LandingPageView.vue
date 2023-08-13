@@ -79,7 +79,8 @@ updatePosition();
     </div>
     <div class="drop-date">Drop date: {{ dropDate }}</div>
     <div v-for="store in allStoresWithDistance">
-        Store {{ store.store_id }}: {{ store.address }} <template v-if="store.distance">({{ store.distance }} mi)</template>
+        {{ store.distance ? store.distance + ' mi • ' : '' }}
+        <a :href="'https://www.google.com/maps/place/' + store.address">{{ store.address }}</a>
     </div>
 </template>
 
