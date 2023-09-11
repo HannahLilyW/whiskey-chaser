@@ -43,3 +43,6 @@ for store in stores:
 
 with open('/usr/share/nginx/whiskeychaser.org/html/stores.json', 'w') as f:
     json.dump(stores_json, f)
+
+with open('/tmp/test.log', 'a') as f:
+    f.write('Ran the script successfully!')

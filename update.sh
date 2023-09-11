@@ -15,6 +15,7 @@ cp -r dist/* /usr/share/nginx/$hostName/html/
 cp -r /root/whiskey-chaser/stores.json /usr/share/nginx/$hostName/html/
 
 cp -r /root/whiskey-chaser/whiskey /usr/lib
+cp -f /root/whiskey-chaser/parse_email.sh /usr/bin/parse_email.sh
 cd /usr/lib/whiskey/
 source env/bin/activate
 cd whiskey
