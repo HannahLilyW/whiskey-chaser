@@ -18,16 +18,14 @@ message = ''
 for line in sys.stdin:
     message += line
 
-log.critical(message)
-exit()
+# mbox = mailbox.mbox("/var/spool/mail/hannah")
+# last_message = mbox[mbox.keys()[-1]]
+# last_message = quopri.decodestring(last_message.as_string()).decode('utf-8')
 
-mbox = mailbox.mbox("/var/spool/mail/hannah")
-last_message = mbox[mbox.keys()[-1]]
-last_message = quopri.decodestring(last_message.as_string()).decode('utf-8')
-urls = re.findall(r'https:\/\/www\.abc\.virginia\.gov\/limited\/allocated_stores_[a-zA-Z0-9_]+\.html', last_message)
+urls = re.findall(r'https:\/\/www\.abc\.virginia\.gov\/limited\/allocated_stores_[a-zA-Z0-9_]+\.html', message)
 if not len(urls):
     # This must not be a drop email.
-    exit
+    exit()
 
 stores_json = {
     'data': []
@@ -38,6 +36,7 @@ response = requests.get(url)
 
 with open('/usr/share/nginx/whiskeychaser.org/html/stores-master.json', 'r') as f:
     stores_master = json.load(f)
+    log.critical(stores_master)
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -59,5 +58,4 @@ for store in stores:
 with open('/usr/share/nginx/whiskeychaser.org/html/stores.json', 'w') as f:
     json.dump(stores_json, f)
 
-with open('/tmp/test.log', 'a') as f:
-    f.write('Ran the script successfully!')
+log.info('Update successful!')
