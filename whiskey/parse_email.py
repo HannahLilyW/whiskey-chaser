@@ -18,13 +18,11 @@ message = ''
 for line in sys.stdin:
     message += line
 
-# mbox = mailbox.mbox("/var/spool/mail/hannah")
-# last_message = mbox[mbox.keys()[-1]]
-# last_message = quopri.decodestring(last_message.as_string()).decode('utf-8')
-
+message = quopri.decodestring(message.as_string()).decode('utf-8')
 urls = re.findall(r'https:\/\/www\.abc\.virginia\.gov\/limited\/allocated_stores_[a-zA-Z0-9_]+\.html', message)
 if not len(urls):
     # This must not be a drop email.
+    log.info('Got an irrevelant message.')
     exit()
 
 stores_json = {
