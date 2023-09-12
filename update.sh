@@ -15,11 +15,14 @@ cp -r dist/* /usr/share/nginx/$hostName/html/
 cp -f /root/whiskey-chaser/stores-master.json /usr/share/nginx/$hostName/html/stores-master.json
 
 cp -r /root/whiskey-chaser/whiskey /usr/lib
-cp -f /root/whiskey-chaser/parse_email.sh /usr/bin/parse_email.sh
 cd /usr/lib/whiskey/
 source env/bin/activate
 cd whiskey
 python manage.py migrate
+
+cp -f /root/whiskey-chaser/parse_email.sh /usr/bin/parse_email.sh
+chown hannah:hannah /usr/bin/parse_email.sh
+chmod +x /usr/bin/parse_email.sh
 
 systemctl restart daphne-whiskey
 systemctl restart nginx

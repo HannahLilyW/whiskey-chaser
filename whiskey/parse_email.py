@@ -3,8 +3,23 @@ import quopri
 import re
 import requests
 import json
+import logging
+import logging.handlers
+import sys
 from bs4 import BeautifulSoup
 
+log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
+syslog_handler = logging.handlers.SysLogHandler('/dev/log')
+syslog_handler.setLevel(logging.DEBUG)
+log.addHandler(syslog_handler)
+
+message = ''
+for line in sys.stdin:
+    message += line
+
+log.critical(message)
+exit()
 
 mbox = mailbox.mbox("/var/spool/mail/hannah")
 last_message = mbox[mbox.keys()[-1]]
