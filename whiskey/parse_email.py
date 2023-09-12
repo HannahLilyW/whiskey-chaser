@@ -18,7 +18,7 @@ message = ''
 for line in sys.stdin:
     message += line
 
-message = quopri.decodestring(message.as_string()).decode('utf-8')
+message = quopri.decodestring(message).decode('utf-8')
 urls = re.findall(r'https:\/\/www\.abc\.virginia\.gov\/limited\/allocated_stores_[a-zA-Z0-9_]+\.html', message)
 if not len(urls):
     # This must not be a drop email.
