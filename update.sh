@@ -21,7 +21,7 @@ cd whiskey
 python manage.py migrate
 
 cp -f /root/whiskey-chaser/parse_email.sh /usr/bin/parse_email.sh
-chown hannah:hannah /usr/bin/parse_email.sh
+chown nginx:nginx /usr/bin/parse_email.sh
 chmod +x /usr/bin/parse_email.sh
 
 systemctl restart daphne-whiskey

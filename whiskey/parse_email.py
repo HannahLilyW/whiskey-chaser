@@ -18,7 +18,7 @@ message = ''
 for line in sys.stdin:
     message += line
 
-message = quopri.decodestring(message).decode('utf-8')
+message = quopri.decodestring(message).decode('utf-8', 'ignore')
 urls = re.findall(r'https:\/\/www\.abc\.virginia\.gov\/limited\/allocated_stores_[a-zA-Z0-9_]+\.html', message)
 if not len(urls):
     # This must not be a drop email.
@@ -34,7 +34,6 @@ response = requests.get(url)
 
 with open('/usr/share/nginx/whiskeychaser.org/html/stores-master.json', 'r') as f:
     stores_master = json.load(f)
-    log.critical(stores_master)
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
