@@ -78,9 +78,11 @@ updatePosition();
         <button @click="updatePosition()">↻ Retry location</button>
     </div>
     <div class="drop-date">Drop date: {{ dropDate }}</div>
-    <div v-for="store in allStoresWithDistance">
-        {{ store.distance ? store.distance + ' mi • ' : '' }}
-        <a :href="'https://www.google.com/maps/place/' + store.address">{{ store.address }}</a>
+    <div class="grid-container">
+        <template v-for="store in allStoresWithDistance">
+            <div class="grid-item mi">{{ store.distance ? store.distance + ' mi' : '? mi' }}</div>
+            <a class="grid-item address" :href="'https://www.google.com/maps/place/' + store.address">{{ store.address }}</a>
+        </template>
     </div>
 </template>
 
@@ -93,5 +95,32 @@ updatePosition();
 }
 .drop-date {
     padding: 4px 0px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: min-content auto;
+}
+
+.grid-header {
+    border-bottom: 1px solid gray;
+}
+
+.grid-item {
+    padding: 12px;
+}
+
+.mi {
+    white-space: nowrap;
+    padding-right: 0px;
+}
+
+.address {
+    padding-left: 8px;
+}
+
+.grid-item:nth-child(4n+1),
+.grid-item:nth-child(4n+2) {
+    background-color: #E9E9E9;
 }
 </style>
