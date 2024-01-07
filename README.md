@@ -1,7 +1,10 @@
 # whiskey-chaser
-abc va allocated drops
+Site to help you find Virginia ABC allocated drops near you fast!
 
-# Initial setup
+# Local development
+See vue-project/README
+
+# Initial setup for deployment
 Run the following as root:
 
 ```
@@ -11,7 +14,7 @@ cd whiskey-chaser
 ./install.sh
 ```
 
-# Subsequent updates
+# Subsequent updates for deployment
 
 Run the following as root:
 

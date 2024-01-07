@@ -79,7 +79,7 @@ updatePosition();
     </div>
     <div class="drop-date">Drop date: {{ dropDate }}</div>
     <div class="grid-container">
-        <template v-for="store in allStoresWithDistance">
+        <template v-for="store in allStoresWithDistance" :key="store.store_id">
             <div class="grid-item mi">{{ store.distance ? store.distance + ' mi' : '? mi' }}</div>
             <a class="grid-item address" :href="'https://www.google.com/maps/place/' + store.address">{{ store.address }}</a>
         </template>
