@@ -27,6 +27,7 @@ function navigateToLandingPage() {
         <RouterView />
         <div class="attrib">
             <p>Whiskey Chaser was created by Hannah Watsky. If you have any issues, please email <a href="mailto:hannah@mail.whiskeychaser.org">hannah@mail.whiskeychaser.org</a>.</p>
+            <p>Special thanks to Brandon Cross, a true whiskey chaser, who came up with the idea for this site and the name 😊</p>
             <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
         </div>
     </div>
