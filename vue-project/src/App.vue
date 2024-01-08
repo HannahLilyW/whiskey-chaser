@@ -25,10 +25,10 @@ function navigateToLandingPage() {
     </div>
     <div class="main-container">
         <RouterView />
-    </div>
-    <div class="attrib">
-        <p>Whiskey Chaser was created by Hannah Watsky. If you have any issues, please email <a href="mailto:hannah@mail.whiskeychaser.org">hannah@mail.whiskeychaser.org</a>.</p>
-        <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
+        <div class="attrib">
+            <p>Whiskey Chaser was created by Hannah Watsky. If you have any issues, please email <a href="mailto:hannah@mail.whiskeychaser.org">hannah@mail.whiskeychaser.org</a>.</p>
+            <a class="attrib-link" href="https://www.flaticon.com/free-icons/whiskey" title="whiskey icons">Whiskey icons created by monkik - Flaticon</a>
+        </div>
     </div>
 </template>
 
@@ -63,10 +63,6 @@ function navigateToLandingPage() {
 .about {
     font-family: cherryswash;
     cursor: pointer;
-}
-
-.attrib {
-    padding: 8px 48px;
 }
 
 .main-container {
