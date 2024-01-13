@@ -7,6 +7,10 @@ import { get } from '../services/api.js';
 
 let currentPosition: Ref<GeolocationPosition|null> = ref(null);
 
+function refresh() {
+    location.reload();
+}
+
 function getPosition(position: GeolocationPosition) {
     currentPosition.value = position;
 }
@@ -75,7 +79,7 @@ updatePosition();
         <div>
             Location unknown. Please allow this site to access your location, to see the closest ABC stores to you that have been authorized to sell limited availability products.
         </div>
-        <button @click="updatePosition()">↻ Retry location</button>
+        <button @click="refresh()">↻ Refresh</button>
     </div>
     <div class="drop-date">Drop date: {{ dropDate }}</div>
     <div class="grid-container">
