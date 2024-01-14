@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import type { Ref } from 'vue';
 import type { Store } from '../models';
-import { get } from '../services/api.js';
-
-
-let currentPosition: Ref<GeolocationPosition|null> = ref(null);
+import { get, currentPosition } from '../services/api.js';
 
 function refresh() {
     location.reload();
@@ -19,7 +16,7 @@ function updatePosition() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(getPosition);
     } else {
-        currentPosition.value = null;
+        currentPosition.value = currentPosition.value || null;
     }
 }
 
@@ -65,12 +62,15 @@ let allStoresWithDistance = computed(() => {
     return stores;
 })
 
-get('/stores.json').then(response => {
-    allStores.value = response['data'];
-    dropDate.value = response['dropDate'];
+onMounted(() => {
+    get('/stores.json').then(response => {
+        allStores.value = response['data'];
+        dropDate.value = response['dropDate'];
+    })
+
+    updatePosition();
 })
 
-updatePosition();
 
 </script>
 

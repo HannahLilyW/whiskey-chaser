@@ -1,3 +1,6 @@
+import { ref } from 'vue';
+import type { Ref } from 'vue';
+
 export async function get(url: string) {
     const response = await fetch(url, {
         method: "GET",
@@ -8,3 +11,5 @@ export async function get(url: string) {
     });
     return response.json();
 }
+
+export const currentPosition: Ref<GeolocationPosition|null> = ref(null);
