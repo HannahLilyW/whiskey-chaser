@@ -113,3 +113,7 @@ systemctl enable daphne-whiskey
 systemctl restart daphne-whiskey
 systemctl enable nginx
 systemctl restart nginx
+
+# for storing email messages
+mkdir /var/log/whiskey
+chown nginx:nginx /var/log/whiskey

@@ -6,6 +6,7 @@ import json
 import logging
 import logging.handlers
 import sys
+import datetime
 from bs4 import BeautifulSoup
 
 log = logging.getLogger(__name__)
@@ -19,6 +20,12 @@ for line in sys.stdin:
     message += line
 
 message = quopri.decodestring(message).decode('utf-8', 'ignore')
+
+# Save message to file
+
+with open(f'/var/log/whiskey/{datetime.datetime.now()}', 'w') as f:
+    f.write(message)
+
 urls = re.findall(r'https:\/\/www\.abc\.virginia\.gov\/limited\/allocated_stores_[a-zA-Z0-9_]+\.html', message)
 if not len(urls):
     # This must not be a drop email.
