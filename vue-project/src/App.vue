@@ -23,6 +23,7 @@ function navigateToLandingPage() {
             <div class="about" @click="navigateToAbout()">About</div>
         </div>
     </div>
+    <p class="sad-update">Sad Update: Virginia ABC has changed the way they distribute allocated whiskeys. They no longer send emails notifying the public of random drops, they just quietly put rare bottles out at random times without notifying the public. So, this site is now obsolete. It will stay up until the domain expires for nostalgia's sake. Thank you to everyone who made use of Whiskey Chaser!</p>
     <div class="main-container">
         <RouterView />
         <div class="attrib">
@@ -68,6 +69,11 @@ function navigateToLandingPage() {
 
 .main-container {
     padding: 8px;
+}
+
+.sad-update {
+    padding: 8px;
+    background-color: rgba(0, 0, 255, 0.25)
 }
 
 @media (min-width: 480px) {
